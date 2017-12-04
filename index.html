@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Number Facts</title>
+    <link rel="stylesheet" href="css/materialize.css">
+</head>
+<body class="black white-text">
+    <div class="container ">
+        <div class="row">
+            <div class="col s12 clear-fix">
+               
+                    <h2 class="center">Number Facts</h2>
+                    <p>Enter a number and get a fact about it</p>
+    
+                    <input type="number" id="number_input" placeholder="Enter any number...">
+    
+                    <div class="fact">
+                        <p id="response" ></p>
+                    </div>
+            
+            </div>
+        </div>
+
+    </div>
+   
+</body>
+
+<script>
+    let fact=document.querySelector('#fact');
+    let factText=document.querySelector('#factText');
+     let input=document.querySelector('#number_input');
+     let response=document.querySelector('#response');
+
+     input.addEventListener('input',fetchFact);
+
+     function fetchFact(){
+        let number=input.value;
+        let xhr=new XMLHttpRequest();
+        xhr.open('GET','http://numbersapi.com//'+number);
+xhr.onload=function(){
+    if(this.status==200 && number!=''){
+        // fact.style.display='block';
+response.innerHTML=this.responseText;
+ console.log(this.responseText());
+    }
+}
+
+xhr.send();
+     }
+</script>
+</html>
